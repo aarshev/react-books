@@ -19,8 +19,8 @@ const getBook = async (req, res) => {
 };
 
 const addBook = async (req, res) => {
-  const { bookName, author, genre, bookImage } = req.body;
-  const data = { bookName, author, genre, bookImage};
+  const { bookName, author, genre, bookImage, details } = req.body;
+  const data = { bookName, author, genre, bookImage, details};
 
   try {
     const createdBook = await bookModel.create({ ...data });
@@ -34,13 +34,13 @@ const addBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
   const { bookId } = req.params;
-  const { bookName, author, genre, bookImage } = req.body;
-  const data = { bookName, author, genre, bookImage };
+  const { bookName, author, genre, bookImage, details } = req.body;
+  const data = { bookName, author, genre, bookImage, details };
 
   try {
     const book = await bookModel
       .findByIdAndUpdate(bookId, data, { runValidators: true, new: true })
-      .select('bookName author genre bookImage createdAt updatedAt');
+      .select('bookName author genre bookImage details createdAt updatedAt');
 
     res.status(200).json({ book: book.toObject() });
   } catch (error) {
@@ -84,7 +84,7 @@ const getBooks = async (req, res) => {
     const count = await bookModel.countDocuments(query);
     let books = await bookModel
       .find(query)
-      .select('bookName author genre bookImage createdAt updatedAt')
+      .select('bookName author genre bookImage details createdAt updatedAt')
       .limit(limit)
       .skip(skipIndex)
       .sort(sortCriteria)
