@@ -21,9 +21,9 @@ const getBook = async (req, res) => {
 const addBook = async (req, res) => {
   const { bookName, author, genre, bookImage, details } = req.body;
   const data = { bookName, author, genre, bookImage, details};
-
   try {
     const createdBook = await bookModel.create({ ...data });
+    console.log(createdBook);
     const book = { ...data, createdAt: createdBook.createdAt, updatedAt: createdBook.updatedAt };
 
     res.status(200).json({ book });

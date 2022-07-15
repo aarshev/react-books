@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    height: 42px;
+    background-color: darkslategrey;
+    color: white;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;  
+    top: 0;
+}
+
+.header-div{
+    height: 42px;
+    font-size: 28px;
+    padding-left: 10px;
+}

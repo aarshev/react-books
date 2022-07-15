@@ -10,8 +10,8 @@ export const BookItem = ({
             <h1>{bookName}</h1>
             <p>{author}</p>
             <p>{genre}</p>
-            <button>Update</button>
-            <button>Delete</button>
+            <button>Details</button>
+            
         </div>
     )
 }

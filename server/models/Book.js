@@ -8,7 +8,7 @@ const bookSchema = new Schema({
     , genre  : { type: String, required: true, enum: ['Fantasy', 'Biography', 'Mystery', 'Crime'] }
     , bookImage  : { type: String}
     , details : { type: String, maxlength: [60, 'Description must be max 60 symbols'] }
-    , owner : { type: ObjectId, ref: 'User', required: true }
+    , owner : { type: ObjectId, ref: 'User' }
     ,
     isDeleted: {
       type: Boolean,
