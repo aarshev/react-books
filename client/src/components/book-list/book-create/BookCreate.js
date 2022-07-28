@@ -12,6 +12,7 @@ export const BookCreate = ({onBookCreate}) =>{
         genre: '0',
         imageUrl: '',
         details: '',
+        owner: JSON.parse(localStorage.auth)._id
     });
     const navigate = useNavigate();
 

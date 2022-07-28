@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 export const BookItem = ({
     bookName,
     author,
     genre,
-    bookImage
+    bookImage,
+    _id
 }) => {
     return (
         <div className="bookItem">
@@ -10,7 +12,9 @@ export const BookItem = ({
             <h1>{bookName}</h1>
             <p>{author}</p>
             <p>{genre}</p>
-            <button>Details</button>
+            <Link to={`/catalog/${_id}`} className="details-button">
+                    Details
+            </Link>
             
         </div>
     )

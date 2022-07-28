@@ -19,8 +19,8 @@ const getBook = async (req, res) => {
 };
 
 const addBook = async (req, res) => {
-  const { bookName, author, genre, bookImage, details } = req.body;
-  const data = { bookName, author, genre, bookImage, details};
+  const { bookName, author, genre, bookImage, details, owner } = req.body;
+  const data = { bookName, author, genre, bookImage, details, owner};
   try {
     const createdBook = await bookModel.create({ ...data });
     console.log(createdBook);
