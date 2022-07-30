@@ -13,7 +13,6 @@ const removePassword = (data) => {
 
 const register = async(req, res, next) => {
     const {  email,  password } = req.body;
-    //console.log(email, password);
 
     return userModel.create({  email, password })
         .then((createdUser) => {

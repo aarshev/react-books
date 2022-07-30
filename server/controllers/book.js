@@ -1,4 +1,5 @@
 const { bookModel } = require('../models/Book');
+const userModel = require('../models/Auth');
 const { errorHandler } = require('../utils/errorHandler');
 const { ValidationError } = require('../utils/createValidationError');
 
@@ -21,11 +22,13 @@ const getBook = async (req, res) => {
 const addBook = async (req, res) => {
   const { bookName, author, genre, bookImage, details, owner } = req.body;
   const data = { bookName, author, genre, bookImage, details, owner};
+
+  const user = await userModel.findById(owner);
   try {
     const createdBook = await bookModel.create({ ...data });
-    console.log(createdBook);
     const book = { ...data, createdAt: createdBook.createdAt, updatedAt: createdBook.updatedAt };
-
+    user.books.push(createdBook._id);
+    await user.save();
     res.status(200).json({ book });
   } catch (error) {
     errorHandler(error, res, req);

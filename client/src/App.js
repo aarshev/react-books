@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense  } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from './contexts/AuthContext';
@@ -7,16 +7,18 @@ import * as bookService from '../src/services/bookService'
 import './reset.css'
 import './App.css';
 
-import { Search } from './components/search/Search'
+//import { Search } from './components/search/Search'
 import { BookList } from './components/book-list/BookList';
 import { BookDetails } from './components/book-list/book-details/BookDetails';
 import { Home } from './components/common/Home';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { BookCreate } from './components/book-list/book-create/BookCreate';
-import  Login  from './components/auth/Login/Login'
-import  Logout  from './components/auth/Logout/Logout'
+import Login from './components/auth/Login/Login'
+import Logout from './components/auth/Logout/Logout'
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { BookEdit } from './components/book-list/book-edit/BookEdit';
+import PrivateGuard from "./components/common/PrivateGuard";
 
 const Register = lazy(() => import('./components/auth/Register/Register'));
 
@@ -69,10 +71,17 @@ function App() {
                             <Register />
                         </Suspense>
                     } />
-                    <Route path="/logout" element={<Logout />} />
-                    <Route path='/create' element={<BookCreate onBookCreate={bookCreateHandler} />} />
-                    <Route path='/catalog' element={<BookList books={books} />} />
+
+                    <Route path='/catalog' element={<BookList />} />
                     <Route path="/catalog/:bookId" element={<BookDetails books={books} />} />
+
+
+                    <Route element={<PrivateGuard />}>
+                        <Route path="/logout" element={<Logout />} />
+                        <Route path='/create' element={<BookCreate onBookCreate={bookCreateHandler} />} />
+                        <Route path="/catalog/:bookId/edit" element={<BookEdit />} />
+                    </Route>
+
                 </Routes>
 
                 <Footer />

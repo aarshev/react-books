@@ -1,3 +1,4 @@
+import * as request from "./requester";
 const baseUrl = 'http://localhost:3005/api/books'
 
 export const getAll = async() => {
@@ -33,3 +34,7 @@ export const create = async (bookData) => {
         throw { message: 'Unable to create book' };
     }
 }
+
+export const edit = (bookId, bookData) => request.put(`${baseUrl}/${bookId}`, bookData);
+
+export const remove = (bookId) => request.del(`${baseUrl}/${bookId}`);

@@ -1,65 +1,104 @@
-export const BookEdit = ({
-    book,   
-}) => {
-      return (
-        <form>
-            <div className="form-row">
-                <div className="form-group">
-                    <label htmlFor="firstName">First name</label>
-                    <div className="input-wrapper">
-                        <span><i className="fa-solid fa-user"></i></span>
-                        <input id="firstName" name="firstName" type="text" defaultValue={book.bookName} />
-                    </div>
-                    <p className="form-error">
-                        First name should be at least 3 characters long!
-                    </p>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="lastName">Last name</label>
-                    <div className="input-wrapper">
-                        <span><i className="fa-solid fa-user"></i></span>
-                        <input id="lastName" name="lastName" type="text" />
-                    </div>
-                    <p className="form-error">
-                        Last name should be at least 3 characters long!
-                    </p>
-                </div>
-            </div>
+import {  useEffect, useState } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
+import styles from './BookEdit.module.css'
 
-            <div className="form-row">
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <div className="input-wrapper">
-                        <span><i className="fa-solid fa-envelope"></i></span>
-                        <input id="email" name="email" type="text" />
-                    </div>
-                    <p className="form-error">Email is not valid!</p>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="phoneNumber">Phone number</label>
-                    <div className="input-wrapper">
-                        <span><i className="fa-solid fa-phone"></i></span>
-                        <input id="phoneNumber" name="phoneNumber" type="text" />
-                    </div>
-                    <p className="form-error">Phone number is not valid!</p>
-                </div>
-            </div>
+import * as bookService from '../../../services/bookService';
 
-            <div className="form-group long-line">
-                <label htmlFor="imageUrl">Image Url</label>
-                <div className="input-wrapper">
-                    <span><i className="fa-solid fa-image"></i></span>
-                    <input id="imageUrl" name="imageUrl" type="text" />
+
+
+export const BookEdit = () => {
+    const [currentBook, setCurrentBook] = useState({});
+    const { bookId } = useParams();
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        bookService.getOne(bookId)
+            .then(bookData => {
+                setCurrentBook(bookData);
+            })
+    }, [])
+
+    const changeHandler = (e) => {
+        setCurrentBook(state => ({
+            ...state,
+            [e.target.name]: e.target.type == 'checkbox' ? e.target.checked : e.target.value
+        }));
+    };
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+    
+        const bookData = Object.fromEntries(new FormData(e.target));
+    
+        bookService.edit(bookId, bookData)
+            .then(result => {
+                navigate(`/catalog/${bookId}`);
+            });
+    };
+    
+    
+    const cancelClickHandler = () => {
+        navigate(`/catalog/${bookId}`);
+    }
+    
+
+
+    return (
+        <div className={styles.wrapper}>
+            <h1 className={styles.heading}>Edit book</h1>
+            <form onSubmit={submitHandler}>
+                <div>
+                    <label htmlFor="">Book name:</label>
+                    <input
+                        type="text"
+                        id="bookName"
+                        name="bookName"
+                        placeholder="Book name"
+                        defaultValue={currentBook.bookName}
+                    />
                 </div>
-                <p className="form-error">ImageUrl is not valid!</p>
-            </div>
-            <div id="form-actions">
-                <button id="action-save" className="btn" type="submit">Edit</button>
-                {/* <button id="action-cancel" className="btn" type="button" onClick={onClose}>
-                    Cancel
-                </button> */}
-            </div>
-        </form>
+                <div>
+                    <label htmlFor="">Author:</label>
+                    <input
+                        type="text"
+                        id="author"
+                        name="author"
+                        placeholder="Author"
+                        defaultValue={currentBook.author}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="genre">Genre:</label>
+                    <select name="genre" id="genre" value={currentBook.genre} onChange={changeHandler}>
+                        <option value="0">-- Choose a genre --</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Crime">Crime</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="">Cover Image:</label>
+                    <input
+                        type="text"
+                        id="bookImage"
+                        name="bookImage"
+                        placeholder="Image URL"
+                        defaultValue={currentBook.bookImage}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="details">Details:</label>
+                    <textarea name="details" id="details" cols="30" rows="10" defaultValue={currentBook.details}  />
+                </div>
+                <div id="form-actions">
+                    <button id="action-save" className="btn" type="submit">Submit</button>
+                    <button id="action-cancel" className="btn" type="button" onClick={cancelClickHandler}>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
     )
-
 }

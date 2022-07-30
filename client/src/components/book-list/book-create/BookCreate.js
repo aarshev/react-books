@@ -10,7 +10,7 @@ export const BookCreate = ({onBookCreate}) =>{
         bookName: '',
         author: '',
         genre: '0',
-        imageUrl: '',
+        bookImage: '',
         details: '',
         owner: JSON.parse(localStorage.auth)._id
     });
@@ -44,7 +44,7 @@ export const BookCreate = ({onBookCreate}) =>{
                         name="bookName"
                         placeholder="Book name"
                         onChange={changeHandler}
-                        value={values.bookName}
+                        defaultValue={values.bookName}
                     />
                 </div>
                 <div>
@@ -55,7 +55,7 @@ export const BookCreate = ({onBookCreate}) =>{
                         name="author"
                         placeholder="Author"
                         onChange={changeHandler}
-                        value={values.author}
+                        defaultValue={values.author}
                     />
                 </div>
                 <div>
@@ -72,11 +72,11 @@ export const BookCreate = ({onBookCreate}) =>{
                     <label htmlFor="">Cover Image:</label>
                     <input
                         type="text"
-                        id="imageUrl"
-                        name="imageUrl"
+                        id="bookImage"
+                        name="bookImage"
                         placeholder="Image URL"
                         onChange={changeHandler}
-                        value={values.imageUrl}
+                        defaultValue={values.bookImage}
                     />
                 </div>
                 <div>

@@ -1,53 +1,28 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import * as bookService from '../../services/bookService'
-import { BookEdit } from "./book-edit/BookEdit";
+
 
 import { BookItem } from "./book-item/BookItem";
 
-const BookActions = {
-    Details: 'details',
-    Edit: 'edit',
-    Delete: 'delete'
-}
 
-export const BookList = ({ books }) => {
+export const BookList = () => {
+    const [books, setBooks] = useState([]);
 
-    const [bookAction, setBookAction] = useState({ book: null, action: null });
-
-    const userActionClickHandler = (bookId, actionType) => {
-        bookService.getOne(bookId)
-            .then(book => {
-                setBookAction({
-                    book,
-                    action: actionType
-                });
-            });
-    }
-
-    const deleteClickHandler = (bookId) => {
-        bookService.getOne(bookId)
-            .then(book => {
-                setBookAction({
-                    book,
-                    action: BookActions.Delete
-                });
-            });
-    }
+    useEffect(() => {
+        bookService.getAll()
+            .then(books => setBooks(books));
+    }, []);
 
     return (
         <div className="bookComponent">
-            {/* {
-                bookAction.action == bookAction.Edit &&
-                <BookEdit
-                    book={bookAction.book}
-                />
-            } */}
+            {books.length > 0
+                ? books.map(book =>
+                    <BookItem
+                        key={book._id} {...book}
+                    />)
+                : <h3 className="bookItem">No books yet</h3>}
 
-            {books.map(book =>
-                <BookItem
-                    key={book._id} {...book}
-                />)}
+
         </div>
     );
 }
