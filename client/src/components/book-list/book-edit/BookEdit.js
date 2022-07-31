@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './BookEdit.module.css'
 
@@ -28,20 +28,20 @@ export const BookEdit = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-    
+
         const bookData = Object.fromEntries(new FormData(e.target));
-    
+
         bookService.edit(bookId, bookData)
             .then(result => {
                 navigate(`/catalog/${bookId}`);
             });
     };
-    
-    
+
+
     const cancelClickHandler = () => {
         navigate(`/catalog/${bookId}`);
     }
-    
+
 
 
     return (
@@ -49,28 +49,32 @@ export const BookEdit = () => {
             <h1 className={styles.heading}>Edit book</h1>
             <form onSubmit={submitHandler}>
                 <div>
-                    <label htmlFor="">Book name:</label>
+                    <label className={styles.label} htmlFor="">Book name:</label>
                     <input
                         type="text"
                         id="bookName"
                         name="bookName"
                         placeholder="Book name"
                         defaultValue={currentBook.bookName}
+                        className={styles.dropdown}
                     />
                 </div>
                 <div>
-                    <label htmlFor="">Author:</label>
+                    <label className={styles.label} htmlFor="">Author:</label>
                     <input
                         type="text"
                         id="author"
                         name="author"
                         placeholder="Author"
                         defaultValue={currentBook.author}
+                        className={styles.dropdown}
                     />
                 </div>
                 <div>
-                    <label htmlFor="genre">Genre:</label>
-                    <select name="genre" id="genre" value={currentBook.genre} onChange={changeHandler}>
+                    <div>
+                        <label className={styles.label} htmlFor="genre">Genre:</label>
+                    </div>
+                    <select className={styles.dropdown} name="genre" id="genre" value={currentBook.genre} onChange={changeHandler}>
                         <option value="0">-- Choose a genre --</option>
                         <option value="Fantasy">Fantasy</option>
                         <option value="Biography">Biography</option>
@@ -79,22 +83,23 @@ export const BookEdit = () => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="">Cover Image:</label>
+                    <label className={styles.label} htmlFor="">Cover Image:</label>
                     <input
                         type="text"
                         id="bookImage"
                         name="bookImage"
                         placeholder="Image URL"
                         defaultValue={currentBook.bookImage}
+                        className={styles.dropdown}
                     />
                 </div>
                 <div>
-                    <label htmlFor="details">Details:</label>
-                    <textarea name="details" id="details" cols="30" rows="10" defaultValue={currentBook.details}  />
+                    <label className={styles.label} htmlFor="details">Details:</label>
+                    <textarea className={styles.dropdown} name="details" id="details" cols="30" rows="10" defaultValue={currentBook.details} />
                 </div>
-                <div id="form-actions">
-                    <button id="action-save" className="btn" type="submit">Submit</button>
-                    <button id="action-cancel" className="btn" type="button" onClick={cancelClickHandler}>
+                <div className={styles.btnDiv} id="form-actions">
+                    <button id="action-save" className={styles.btn} type="submit">Submit</button>
+                    <button id="action-cancel" className={styles.btnCancel} type="button" onClick={cancelClickHandler}>
                         Cancel
                     </button>
                 </div>

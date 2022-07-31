@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { AuthContext } from "../../../contexts/AuthContext";
 import * as authService from "../../../services/authService";
 
+import styles from './Register.module.css'
 
 const Register = () => {
     const { userLogin } = useContext(AuthContext);
@@ -30,31 +31,40 @@ const Register = () => {
     }
 
     return (
-        <section id="register-page" className="content auth">
+        <div id="register-page" className={styles.wrapper}>
             <form id="register" onSubmit={onSubmit}>
-                <div className="container">
-                    <div className="brand-logo" />
-                    <h1>Register</h1>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="maria@email.com"
-                    />
-                    <label htmlFor="pass">Password:</label>
-                    <input type="password" name="password" id="register-password" />
-                    <label htmlFor="con-pass">Confirm Password:</label>
-                    <input type="password" name="confirm-password" id="confirm-password" />
-                    <input className="btn submit" type="submit" defaultValue="Register" />
-                    <p className="field">
+                <div >
+                    <div />
+                    <h1 className={styles.heading}>Register</h1>
+                    <div>
+                        <label className={styles.label} htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="aarshev@email.com"
+                            className={styles.dropdown}
+                        />
+                    </div>
+                    <div>
+                        <label className={styles.label} htmlFor="pass">Password:</label>
+                        <input className={styles.dropdown} type="password" name="password" id="register-password" />
+                    </div>
+                    <div>
+                        <label className={styles.label} htmlFor="con-pass">Confirm Password:</label>
+                        <input className={styles.dropdown} type="password" name="confirm-password" id="confirm-password" />
+                    </div>
+                    <div className={styles.btnDiv}>
+                        <button className={styles.btn} type="submit" defaultValue="Register" >Submit</button>
+                    </div>
+                    <p >
                         <span>
-                            If you already have profile click <a href="#">here</a>
+                            If you already have profile click <Link className={styles.link} to="/login">here</Link>
                         </span>
                     </p>
                 </div>
             </form>
-        </section>
+        </div>
     );
 };
 

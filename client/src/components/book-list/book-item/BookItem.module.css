@@ -1,0 +1,52 @@
+.bookItem{
+    height: 620px;
+    width: 400px;
+    background-color: white;
+    border-radius: 20px; 
+}
+
+img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.redLine{
+    border-bottom: 1px solid red;
+    width: 90%;
+}
+
+.info{
+    font-size: 22px;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.btn{
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 25px;
+    text-decoration: none;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    cursor: pointer;
+    padding: 7px 14px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btnDiv{
+    text-align: center;
+}

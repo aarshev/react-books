@@ -10,3 +10,16 @@
     color: white;
     margin-left: 20px;
 }
+
+.nav{
+    display: flex;
+}
+
+.email{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.emailPlain{
+    font-size: 25px;
+}

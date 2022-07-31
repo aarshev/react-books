@@ -7,10 +7,16 @@
     width: 100%;
     position: fixed;  
     top: 0;
+    z-index: 100;
 }
 
 .header-div{
     height: 42px;
     font-size: 28px;
     padding-left: 10px;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
 }

@@ -6,8 +6,7 @@ import {  useContext } from 'react';
 
 const PrivateGuard = ({children}) => {
     const { user } = useContext(AuthContext);
-    
-    if (!user.accessToken) {
+    if (!user.email) {
         return <Navigate to="/login" replace />
     }
 

@@ -2,13 +2,13 @@
     border: 1px solid #000;
     border-radius: 10px;
     padding: 20px 80px;
-    width: 30%;
+    width: 25%;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 600px;
+    height: 800px;
     background-color :antiquewhite;
     color: darkslategrey;
 }
@@ -16,5 +16,52 @@
 .heading{
     font-size: 40px;
     text-align: center;
-    margin-bottom: 20px;
+}
+
+.dropdown{
+    font-size: 20px;
+}
+
+.label{
+    font-size: 25px;
+}
+
+.btnDiv{
+    margin-top: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.btn{
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btnCancel{
+    background-color: red;
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: 10px;
 }

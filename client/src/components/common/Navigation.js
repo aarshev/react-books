@@ -6,8 +6,8 @@ import { useContext } from 'react';
 export default function Navigation(){
     const { user } = useContext(AuthContext);
     return(
-        <nav>
-            {user.email && <span>{user.email}</span>}
+        <nav className={styles.nav}>
+            {user.email && <span className={styles.emailPlain}>User: <span className={styles.email}>{user.email}</span></span>}
             <ul className={styles.ul}>
                 <li><NavLink className={styles.li} to='/catalog'>All books</NavLink></li>
                 {user.email

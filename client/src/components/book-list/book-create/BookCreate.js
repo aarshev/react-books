@@ -37,7 +37,7 @@ export const BookCreate = ({onBookCreate}) =>{
             <h1 className={styles.heading}>Add a book</h1>
             <form onSubmit={submitHandler}>
                 <div>
-                    <label htmlFor="">Book name:</label>
+                    <label className={styles.label} htmlFor="">Book name:</label>
                     <input
                         type="text"
                         id="bookName"
@@ -45,10 +45,11 @@ export const BookCreate = ({onBookCreate}) =>{
                         placeholder="Book name"
                         onChange={changeHandler}
                         defaultValue={values.bookName}
+                        className={styles.dropdown}
                     />
                 </div>
                 <div>
-                    <label htmlFor="">Author:</label>
+                    <label className={styles.label} htmlFor="">Author:</label>
                     <input
                         type="text"
                         id="author"
@@ -56,11 +57,14 @@ export const BookCreate = ({onBookCreate}) =>{
                         placeholder="Author"
                         onChange={changeHandler}
                         defaultValue={values.author}
+                        className={styles.dropdown}
                     />
                 </div>
                 <div>
-                    <label htmlFor="genre">Genre:</label>
-                    <select name="genre" id="genre" value={values.genre} onChange={changeHandler}>
+                    <div>
+                        <label className={styles.label} htmlFor="genre">Genre:</label>
+                    </div>
+                    <select className={styles.dropdown} name="genre" id="genre" value={values.genre} onChange={changeHandler}>
                         <option value="0">-- Choose a genre --</option>
                         <option value="Fantasy">Fantasy</option>
                         <option value="Biography">Biography</option>
@@ -69,7 +73,7 @@ export const BookCreate = ({onBookCreate}) =>{
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="">Cover Image:</label>
+                    <label className={styles.label} htmlFor="">Cover Image:</label>
                     <input
                         type="text"
                         id="bookImage"
@@ -77,15 +81,16 @@ export const BookCreate = ({onBookCreate}) =>{
                         placeholder="Image URL"
                         onChange={changeHandler}
                         defaultValue={values.bookImage}
+                        className={styles.dropdown}
                     />
                 </div>
                 <div>
-                    <label htmlFor="details">Details:</label>
-                    <textarea name="details" id="details" cols="30" rows="10" value={values.details} onChange={changeHandler} />
+                    <label className={styles.label} htmlFor="details">Details:</label>
+                    <textarea className={styles.dropdown} name="details" id="details" cols="30" rows="10" value={values.details} onChange={changeHandler} />
                 </div>
-                <div id="form-actions">
-                    <button id="action-save" className="btn" type="submit">Submit</button>
-                    <button id="action-cancel" className="btn" type="button" onClick={cancelClickHandler}>
+                <div className={styles.btnDiv} id="form-actions">
+                    <button id="action-save" className={styles.btn} type="submit">Submit</button>
+                    <button id="action-cancel" className={styles.btnCancel} type="button" onClick={cancelClickHandler}>
                         Cancel
                     </button>
                 </div>

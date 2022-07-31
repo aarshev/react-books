@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import * as bookService from '../../services/bookService'
 
+import styles from './BookList.module.css'
+
 
 import { BookItem } from "./book-item/BookItem";
 
@@ -14,7 +16,7 @@ export const BookList = () => {
     }, []);
 
     return (
-        <div className="bookComponent">
+        <div className={styles.bookComponent}>
             {books.length > 0
                 ? books.map(book =>
                     <BookItem

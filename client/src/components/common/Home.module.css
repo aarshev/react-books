@@ -4,4 +4,20 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 50px;
+}
+
+.para{
+    margin: 0;
+    margin-top: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+
+.link{
+    text-decoration: none;
+    color: blue;
 }
