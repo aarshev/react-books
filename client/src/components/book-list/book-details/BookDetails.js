@@ -12,14 +12,20 @@ export const BookDetails = ({
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    console.log(user);
+    const isOwner = currentGame.owner === user._id
+
+
 
     useEffect(() => {
         bookService.getOne(bookId)
             .then(result => {
                 setCurrentBook(result);
+                console.log(user);
+                console.log(result);
             });
     }, [])
+
+
 
     const cancelClickHandler = () => {
         navigate(`/catalog`);
@@ -44,11 +50,15 @@ export const BookDetails = ({
             <p className={styles.info}>Author: <span className={styles.bold}>{currentGame.author}</span></p>
             <p className={styles.info}>Genre: <span className={styles.bold}>{currentGame.genre}</span></p>
             <p className={styles.info}>Book details: <span className={styles.bold}>{currentGame.details}</span></p>
-            <div><Link className={styles.btnEdit} to={`/catalog/${bookId}/edit`}>
-                Edit
-            </Link>
-                <button className={styles.btnCancel} onClick={bookDeleteHandler}>Delete</button>
-            </div>
+            {isOwner &&
+                <div>
+                    <Link className={styles.btnEdit} to={`/catalog/${bookId}/edit`}>
+                        Edit
+                    </Link>
+                    <button className={styles.btnCancel} onClick={bookDeleteHandler}>Delete</button>
+                </div>
+            }
+
             <button className={styles.btnBack} id="action-cancel" type="button" onClick={cancelClickHandler}>
                 Back to library
             </button>
