@@ -9,6 +9,7 @@ const bookSchema = new Schema({
     , bookImage  : { type: String}
     , details : { type: String, maxlength: [60, 'Description must be max 60 symbols'] }
     , owner : { type: ObjectId, ref: 'Auth', required: true }
+    , likes : { type: [ObjectId], ref: 'Auth', default : [] }
     ,
     isDeleted: {
       type: Boolean,

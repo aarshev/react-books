@@ -15,7 +15,6 @@ const request = async (method, url, data) => {
         }
 
         let buildRequest;
-
         if (method === 'GET') {
             buildRequest = fetch(url, { headers });
         } else {

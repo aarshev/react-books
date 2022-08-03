@@ -11,6 +11,7 @@ export const BookDetails = ({
     const [currentGame, setCurrentBook] = useState({});
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+    let isLiked = false;
 
     const isOwner = currentGame.owner === user._id
 
@@ -22,6 +23,10 @@ export const BookDetails = ({
                 setCurrentBook(result);
                 console.log(user);
                 console.log(result);
+                if (result.likes.includes(user._id)) {
+                    isLiked = true;
+                    setToDisabled("likeBtn")
+                }
             });
     }, [])
 
@@ -42,6 +47,21 @@ export const BookDetails = ({
         }
     }
 
+    const bookLikeHandler = () => {
+        console.log("stsa")
+        bookService.likeBook(bookId, { 'user': user._id })
+            .then(() =>
+                setToDisabled("likeBtn")
+            );
+
+    }
+
+    const setToDisabled = (btnId) => {
+        let btn = document.getElementById(btnId)
+        btn.disabled = true;
+        btn.innerText = 'Liked';
+    }
+
     return (
         <div className={styles.bookItem}>
             <h1 className={styles.title}>Details</h1>
@@ -58,7 +78,11 @@ export const BookDetails = ({
                     <button className={styles.btnCancel} onClick={bookDeleteHandler}>Delete</button>
                 </div>
             }
-
+            {!isOwner &&
+                <div>
+                    <button id="likeBtn" className={styles.btnLike} onClick={bookLikeHandler}>Like</button>
+                </div>
+            }
             <button className={styles.btnBack} id="action-cancel" type="button" onClick={cancelClickHandler}>
                 Back to library
             </button>

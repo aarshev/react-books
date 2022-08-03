@@ -16,7 +16,6 @@ export const getOne = async (bookId) => {
 };
 
 export const create = async (bookData) => {
-    console.log(bookData)
     const response = await fetch(baseUrl, {
         method: 'POST',
         headers: {
@@ -38,3 +37,5 @@ export const create = async (bookData) => {
 export const edit = (bookId, bookData) => request.put(`${baseUrl}/${bookId}`, bookData);
 
 export const remove = (bookId) => request.del(`${baseUrl}/${bookId}`);
+
+export const likeBook = (bookId, userData) => request.post(`${baseUrl}/like/${bookId}`, userData)
