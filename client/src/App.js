@@ -19,6 +19,7 @@ import Logout from './components/auth/Logout/Logout'
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { BookEdit } from './components/book-list/book-edit/BookEdit';
 import PrivateGuard from "./components/common/PrivateGuard";
+import { UserBooks } from './components/book-list/user-books/UserBooks';
 
 const Register = lazy(() => import('./components/auth/Register/Register'));
 
@@ -56,12 +57,6 @@ function App() {
         <div>
             <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
                 <Header />
-                {/* <main>
-                    <button>Add Book</button>
-                    <Search />
-
-                    <BookList books={books}/>
-                </main> */}
 
                 <Routes>
                     <Route path='/' element={<Home />} />
@@ -80,6 +75,7 @@ function App() {
                         <Route path="/logout" element={<Logout />} />
                         <Route path='/create' element={<BookCreate onBookCreate={bookCreateHandler} />} />
                         <Route path="/catalog/:bookId/edit" element={<BookEdit />} />
+                        <Route path="/profile/:userId" element={<UserBooks />} />
                     </Route>
 
                 </Routes>

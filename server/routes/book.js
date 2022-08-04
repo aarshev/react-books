@@ -3,6 +3,7 @@ const controller = require('../controllers/book');
 
 router.get('', controller.getBooks);
 router.get('/:bookId', controller.getBook);
+router.get('/profile/:id', controller.booksForUser);
 
 router.post('', controller.addBook);
 router.post('/like/:bookId', controller.likeBook);

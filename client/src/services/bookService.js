@@ -38,4 +38,6 @@ export const edit = (bookId, bookData) => request.put(`${baseUrl}/${bookId}`, bo
 
 export const remove = (bookId) => request.del(`${baseUrl}/${bookId}`);
 
+export const getBooksUser = (userId) => request.get(`${baseUrl}/profile/${userId}`);
+
 export const likeBook = (bookId, userData) => request.post(`${baseUrl}/like/${bookId}`, userData)

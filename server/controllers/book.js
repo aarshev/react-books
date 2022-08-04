@@ -119,6 +119,28 @@ const likeBook = async (req, res, next) => {
     }
 }
 
+const booksForUser = async (req, res, next) => {
+    const userId = req.params.id;
+    const query = { isDeleted: false };
+    const ownedBooks = [];
+    let books = await bookModel
+            .find(query)
+            .select('bookName author genre bookImage owner details createdAt updatedAt');
+    for (let book of books){
+        if(book.owner == userId){
+            ownedBooks.push(book)
+        }
+    }        
+
+    try{
+        res.status(200).json(ownedBooks)
+    }catch(err){
+        next(err);
+    }
+
+}
+
+
 
 module.exports = {
     getBook,
@@ -126,5 +148,6 @@ module.exports = {
     updateBook,
     deleteBook,
     getBooks,
-    likeBook
+    likeBook,
+    booksForUser
 };
