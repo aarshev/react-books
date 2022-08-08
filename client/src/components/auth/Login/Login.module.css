@@ -53,3 +53,8 @@
     text-decoration: none;
     color: blue;
 }
+
+.form-error {
+    color: #d9534f;
+    min-height: 20px;
+}

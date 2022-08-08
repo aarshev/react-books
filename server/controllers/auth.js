@@ -37,6 +37,9 @@ const register = async(req, res, next) => {
                 res.status(409)
                     .send({ message: `This ${field} is already registered!` });
                 return;
+            }else{
+                res.status(410)
+                    .send({ message: `Error` });
             }
             next(err);
         });

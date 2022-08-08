@@ -12,6 +12,7 @@ import { BookList } from './components/book-list/BookList';
 import { BookDetails } from './components/book-list/book-details/BookDetails';
 import { Home } from './components/common/Home';
 import { Header } from './components/common/Header';
+import { NotFound } from './components/common/NotFound';
 import { Footer } from './components/common/Footer';
 import { BookCreate } from './components/book-list/book-create/BookCreate';
 import Login from './components/auth/Login/Login'
@@ -69,6 +70,7 @@ function App() {
 
                     <Route path='/catalog' element={<BookList />} />
                     <Route path="/catalog/:bookId" element={<BookDetails books={books} />} />
+                    <Route path="*" element={<NotFound/>} />
 
 
                     <Route element={<PrivateGuard />}>

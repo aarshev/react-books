@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import {useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -8,6 +8,7 @@ import styles from './Login.module.css'
 
 const Login = () => {
     const { userLogin } = useContext(AuthContext);
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const onSubmit = (e) => {
@@ -20,11 +21,19 @@ const Login = () => {
 
         authService.login(email, password)
             .then(authData => {
+                if(authData.message)
+                {
+                    throw new Error("error");
+                }
                 userLogin(authData);
-                navigate('/');
+                navigate('/')
+                
             })
-            .catch(() => {
-                navigate('/404');
+            .catch((e) => {
+                setErrors(state => ({
+                    ...state,
+                    "login": true,
+                }));
             });
     };
 
@@ -47,6 +56,11 @@ const Login = () => {
                     <div>
                         <label className={styles.label} htmlFor="login-pass">Password:</label>
                         <input className={styles.dropdown} type="password" id="login-password" name="password" />
+                        {errors.login &&
+                        <p className={styles["form-error"]}>
+                            Email or password do not match!
+                        </p>
+                    }
                     </div>
                     <div className={styles.btnDiv}>
                         <button className={styles.btn} type="submit" defaultValue="Login">Submit</button>

@@ -10,7 +10,7 @@ const userSchema = new Schema({
             validator(value){
                 return EMAIL_PATTERN.test(value);
             },
-            message: 'Email must be valid  may contain only english letters'
+            message: 'Email must be valid may contain only english letters'
         }
     }, 
     password: {
