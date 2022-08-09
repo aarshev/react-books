@@ -24,7 +24,7 @@ export const UserBooks = () => {
                     <BookItem
                         key={book._id} {...book}
                     />)
-                : <h3 className="bookItem">You haven't added any books</h3>}
+                : <h3 className={styles["bookItem"]}>You haven't added any books</h3>}
 
 
         </div>
