@@ -8,12 +8,12 @@ import styles from './BookDetails.module.css'
 export const BookDetails = ({
 }) => {
     const { bookId } = useParams();
-    const [currentGame, setCurrentBook] = useState({});
+    const [currentBook, setCurrentBook] = useState({});
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     let isLiked = false;
 
-    const isOwner = currentGame.owner === user._id
+    const isOwner = currentBook.owner === user._id
 
 
 
@@ -65,11 +65,11 @@ export const BookDetails = ({
     return (
         <div className={styles.bookItem}>
             <h1 className={styles.title}>Details</h1>
-            <img className={styles.img} src={currentGame.bookImage} alt="" />
-            <h1 className={styles.title}>{currentGame.bookName}</h1>
-            <p className={styles.info}>Author: <span className={styles.bold}>{currentGame.author}</span></p>
-            <p className={styles.info}>Genre: <span className={styles.bold}>{currentGame.genre}</span></p>
-            <p className={styles.info}>Book details: <span className={styles.bold}>{currentGame.details}</span></p>
+            <img className={styles.img} src={currentBook.bookImage} alt="" />
+            <h1 className={styles.title}>{currentBook.bookName}</h1>
+            <p className={styles.info}>Author: <span className={styles.bold}>{currentBook.author}</span></p>
+            <p className={styles.info}>Genre: <span className={styles.bold}>{currentBook.genre}</span></p>
+            <p className={styles.info}>Book details: <span className={styles.bold}>{currentBook.details}</span></p>
             {isOwner &&
                 <div>
                     <Link className={styles.btnEdit} to={`/catalog/${bookId}/edit`}>

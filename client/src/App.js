@@ -21,6 +21,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import { BookEdit } from './components/book-list/book-edit/BookEdit';
 import PrivateGuard from "./components/common/PrivateGuard";
 import { UserBooks } from './components/book-list/user-books/UserBooks';
+import BookOwner from './components/common/BookOwner';
 
 const Register = lazy(() => import('./components/auth/Register/Register'));
 
@@ -70,13 +71,15 @@ function App() {
 
                     <Route path='/catalog' element={<BookList />} />
                     <Route path="/catalog/:bookId" element={<BookDetails books={books} />} />
-                    <Route path="*" element={<NotFound/>} />
+                    <Route path="*" element={<NotFound />} />
 
+                    <Route element={<BookOwner />}>
+                        <Route path="/catalog/:bookId/edit" element={<BookEdit />} />
+                    </Route>
 
                     <Route element={<PrivateGuard />}>
                         <Route path="/logout" element={<Logout />} />
                         <Route path='/create' element={<BookCreate onBookCreate={bookCreateHandler} />} />
-                        <Route path="/catalog/:bookId/edit" element={<BookEdit />} />
                         <Route path="/profile/:userId" element={<UserBooks />} />
                     </Route>
 
