@@ -16,7 +16,7 @@ export const BookEdit = () => {
     useEffect(() => {
         bookService.getOne(bookId)
             .then(bookData => {
-                setCurrentBook(bookData);
+                setCurrentBook(bookData.book);
             })
     }, [])
 
