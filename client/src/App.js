@@ -41,13 +41,13 @@ function App() {
 
     useEffect(() => {
         bookService.getAll()
-            .then(books => setBooks(books));
+            .then(books => {setBooks(books.books)});
     }, []);
 
     const bookCreateHandler = (bookData) => {
         bookService.create(bookData)
             .then(book => {
-                setBooks(oldBooks => [...oldBooks, book]);
+                setBooks(oldBooks => [...oldBooks, book.book]);
                 navigate('/catalog');
             })
             .catch(err => {

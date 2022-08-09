@@ -23,7 +23,7 @@ export const BookDetails = ({
                 setCurrentBook(result.book);
                 if (result.book.likes.includes(user._id)) {
                     isLiked = true;
-                    setToDisabled("likeBtn")
+                    setToDisabled("likeBtn", result.book.likes.length)
                 }
             });
     }, [])
@@ -48,16 +48,16 @@ export const BookDetails = ({
     const bookLikeHandler = () => {
         console.log("stsa")
         bookService.likeBook(bookId, { 'user': user._id })
-            .then(() =>
-                setToDisabled("likeBtn")
-            );
+            .then((book) => {
+                setToDisabled("likeBtn", book.likes.length)
+            });
 
     }
 
-    const setToDisabled = (btnId) => {
+    const setToDisabled = (btnId, likes) => {
         let btn = document.getElementById(btnId)
         btn.disabled = true;
-        btn.innerText = 'Liked';
+        btn.innerText = `Likes: ${likes}` ;
     }
 
     return (
