@@ -17,6 +17,7 @@ export const BookDetails = ({
 
 
 
+
     useEffect(() => {
         bookService.getOne(bookId)
             .then(result => {
@@ -46,7 +47,6 @@ export const BookDetails = ({
     }
 
     const bookLikeHandler = () => {
-        console.log("stsa")
         bookService.likeBook(bookId, { 'user': user._id })
             .then((book) => {
                 setToDisabled("likeBtn", book.likes.length)
@@ -76,7 +76,7 @@ export const BookDetails = ({
                     <button className={styles.btnCancel} onClick={bookDeleteHandler}>Delete</button>
                 </div>
             }
-            {!isOwner &&
+            {user.email &&!isOwner  &&
                 <div>
                     <button id="likeBtn" className={styles.btnLike} onClick={bookLikeHandler}>Like</button>
                 </div>

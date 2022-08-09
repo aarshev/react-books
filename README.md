@@ -69,7 +69,7 @@ This project was created by me as the React front-end framework course at Softun
 
 ## How to start the project locally
 <ul>
-    <li>Install all dependencies from both API and Client with the command npm i</li>
-    <li>Navigate to the API folder in the command line and start the server with the npm run start</li>
+    <li>Install all dependencies from  Client with the command npm i</li>
+    <li>The server is deployed to Heroku, so you do not need to run it</li>
     <li>Navigate to the Client folder in the command line and start the app with npm run start. This will start the app on localhost:3000</li>
 </ul>

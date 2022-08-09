@@ -1,6 +1,6 @@
 import * as request from "./requester";
 
-const baseUrl = 'http://localhost:3005/api';
+const baseUrl = 'http://books-su-aarshev.herokuapp.com/api';
 
 export const login = (email, password) => 
     request.post(`${baseUrl}/login`, { email, password });

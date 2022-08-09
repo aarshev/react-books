@@ -1,12 +1,5 @@
 import * as request from "./requester";
-const baseUrl = 'http://localhost:3005/api/books'
-
-// export const getAll = async() => {
-//     const response = await fetch(`${baseUrl}`);
-//     const result = await response.json();
-    
-//     return result.books; 
-// }
+const baseUrl = 'http://books-su-aarshev.herokuapp.com/api/books'
 
 
 export const getAll = () => request.get(`${baseUrl}`);

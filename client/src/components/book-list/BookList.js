@@ -12,7 +12,10 @@ export const BookList = () => {
 
     useEffect(() => {
         bookService.getAll()
-            .then(books => setBooks(books.books));
+            .then(books => {
+                setBooks(books.books);
+                
+            });
     }, []);
 
     return (
