@@ -22,7 +22,7 @@ export const BookList = () => {
                     <BookItem
                         key={book._id} {...book}
                     />)
-                : <h3 className="bookItem">No books yet</h3>}
+                : <h3 className={styles["bookItem"]}>No books yet</h3>}
 
 
         </div>
