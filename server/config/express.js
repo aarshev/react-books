@@ -1,5 +1,5 @@
 const cors = require('cors');
-const whitelist = ['http://localhost:3000', 'https://user-list-demo-react.herokuapp.com/'];
+const whitelist = ['http://localhost:3000', 'https://react-library-su-aarshev.herokuapp.com/'];
 const cookieParser = require('cookie-parser');
 const cookieSecret = process.env.COOKIESECRET || 'AArshev';
 

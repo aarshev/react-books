@@ -1,6 +1,6 @@
-const { PORT, DB_NAME, DB_CONNECTION } = process.env;
+const { PORT, DB_NAME, DB_CONNECTION, MONGODB_URI } = process.env;
 
 module.exports = {
   port: PORT || 3005,
-  dbConnection: `${DB_CONNECTION}/${DB_NAME}`,
+  dbConnection: MONGODB_URI || `${DB_CONNECTION}/${DB_NAME}`,
 };
