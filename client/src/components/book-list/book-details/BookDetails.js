@@ -20,10 +20,8 @@ export const BookDetails = ({
     useEffect(() => {
         bookService.getOne(bookId)
             .then(result => {
-                setCurrentBook(result);
-                console.log(user);
-                console.log(result);
-                if (result.likes.includes(user._id)) {
+                setCurrentBook(result.book);
+                if (result.book.likes.includes(user._id)) {
                     isLiked = true;
                     setToDisabled("likeBtn")
                 }

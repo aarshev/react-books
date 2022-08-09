@@ -1,38 +1,19 @@
 import * as request from "./requester";
 const baseUrl = 'http://localhost:3005/api/books'
 
-export const getAll = async() => {
-    const response = await fetch(`${baseUrl}`);
-    const result = await response.json();
+// export const getAll = async() => {
+//     const response = await fetch(`${baseUrl}`);
+//     const result = await response.json();
     
-    return result.books; 
-}
+//     return result.books; 
+// }
 
-export const getOne = async (bookId) => {
-    const response = await fetch(`${baseUrl}/${bookId}`)
-    const result =  await response.json();
 
-    return result.book;
-};
+export const getAll = () => request.get(`${baseUrl}`);
 
-export const create = async (bookData) => {
-    const response = await fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify(bookData)
-    });
-    
+export const getOne = (bookId) => request.get(`${baseUrl}/${bookId}`);
 
-    if (response.ok) {
-        const result = await response.json();
-
-        return result.book;
-    } else {
-        throw { message: 'Unable to create book' };
-    }
-}
+export const create = (bookData) => request.post(`${baseUrl}`, bookData);
 
 export const edit = (bookId, bookData) => request.put(`${baseUrl}/${bookId}`, bookData);
 
