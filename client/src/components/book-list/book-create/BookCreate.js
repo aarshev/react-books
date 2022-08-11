@@ -90,7 +90,7 @@ export const BookCreate = ({ onBookCreate }) => {
                         placeholder="Book name"
                         onChange={changeHandler}
                         onBlur={(e) => minLength(e, 3)}
-                        defaultValue={values.bookName}
+                        value={values.bookName}
                         className={styles.dropdown}
                     />
                     {errors.bookName &&
@@ -108,7 +108,7 @@ export const BookCreate = ({ onBookCreate }) => {
                         placeholder="Author"
                         onChange={changeHandler}
                         onBlur={(e) => minLength(e, 3)}
-                        defaultValue={values.author}
+                        value={values.author}
                         className={styles.dropdown}
                     />
                     {errors.author &&
@@ -142,7 +142,7 @@ export const BookCreate = ({ onBookCreate }) => {
                         name="bookImage"
                         placeholder="Image URL"
                         onChange={changeHandler}
-                        defaultValue={values.bookImage}
+                        value={values.bookImage}
                         className={styles.dropdown}
                     />
                 </div>
