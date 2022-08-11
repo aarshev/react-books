@@ -15,7 +15,6 @@ import { Header } from './components/common/Header';
 import { NotFound } from './components/common/NotFound';
 import { Footer } from './components/common/Footer';
 import { BookCreate } from './components/book-list/book-create/BookCreate';
-import Login from './components/auth/Login/Login'
 import Logout from './components/auth/Logout/Logout'
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { BookEdit } from './components/book-list/book-edit/BookEdit';
@@ -23,6 +22,7 @@ import PrivateGuard from "./components/common/PrivateGuard";
 import { UserBooks } from './components/book-list/user-books/UserBooks';
 import BookOwner from './components/common/BookOwner';
 
+const Login = lazy(() => import('./components/auth/Login/Login'));
 const Register = lazy(() => import('./components/auth/Register/Register'));
 
 function App() {
@@ -62,7 +62,11 @@ function App() {
 
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={
+                        <Suspense fallback={<span>Loading....</span>}>
+                            <Login />
+                        </Suspense>
+                    } />
                     <Route path="/register" element={
                         <Suspense fallback={<span>Loading....</span>}>
                             <Register />
